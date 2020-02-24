@@ -64,13 +64,15 @@ public class MainActivity extends AppCompatActivity {
 
                     stateInfoDao.bulkInsertOutbox(stateList);
 
+                    List<State> states = stateInfoDao.getStateList("Bangladesh");
+                    Log.d("states", "onCreate: "+states);
+
                 }
             });
         }
 
 
-        List<State> states = stateInfoDao.getStateList("Bangladesh");
-        Log.d("states", "onCreate: "+states);
+
 
 
     }
