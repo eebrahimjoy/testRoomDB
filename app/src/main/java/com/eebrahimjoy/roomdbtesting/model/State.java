@@ -8,14 +8,11 @@ import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "state_table", indices = {@Index(value = {"state_id", "state_name"}, unique = true)})
+@Entity(tableName = "state_table", indices = {@Index(value = { "state_name"})})
 public class State {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
-
-    @ColumnInfo(name = "state_id")
-    private long stateId;
 
     @ColumnInfo(name = "state_name")
     private String name;
@@ -47,9 +44,8 @@ public class State {
     @Embedded(prefix = "prime_minister_")
     private PrimeMinister primeMinister;
 
-    public State(int id, long stateId, String name, int code, String economyStatus, String mainLanguage, String mainReligion, double area, String subcontinent, int population, int totalNoDivision, PrimeMinister primeMinister) {
+    public State( int id,String name, int code, String economyStatus, String mainLanguage, String mainReligion, double area, String subcontinent, int population, int totalNoDivision, PrimeMinister primeMinister) {
         this.id = id;
-        this.stateId = stateId;
         this.name = name;
         this.code = code;
         this.economyStatus = economyStatus;
@@ -63,8 +59,7 @@ public class State {
     }
 
     @Ignore
-    public State(long stateId, String name, int code, String economyStatus, String mainLanguage, String mainReligion, double area, String subcontinent, int population, int totalNoDivision, PrimeMinister primeMinister) {
-        this.stateId = stateId;
+    public State( String name, int code, String economyStatus, String mainLanguage, String mainReligion, double area, String subcontinent, int population, int totalNoDivision, PrimeMinister primeMinister) {
         this.name = name;
         this.code = code;
         this.economyStatus = economyStatus;
@@ -83,14 +78,6 @@ public class State {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public long getStateId() {
-        return stateId;
-    }
-
-    public void setStateId(long stateId) {
-        this.stateId = stateId;
     }
 
     public String getName() {

@@ -25,6 +25,6 @@ public interface DivisionDao {
     @Query("SELECT * FROM division_table WHERE division_name = :name")
     List<Division> getDivisionList(String name);
 
-    @Query("SELECT * FROM division_table division LEFT JOIN state_table state ON (division.state_id = state.state_id) WHERE state.state_name =:name")
-    List<Division> getStateWithDivision(String name);
+//    @Query("SELECT * FROM division_table division LEFT JOIN state_table state ON (division.division_id = state.state_id) WHERE state.state_name =:name")
+//    List<Division> getStateWithDivision(String name);
 }

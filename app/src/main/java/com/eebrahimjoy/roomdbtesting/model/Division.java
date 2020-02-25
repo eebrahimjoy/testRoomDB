@@ -7,7 +7,7 @@ import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "division_table", indices = {@Index(value = {"division_name", "division_code"}, unique = true)})
+@Entity(tableName = "division_table", indices = {@Index(value = {"division_name"})})
 public class Division {
 
     @PrimaryKey(autoGenerate = true)
@@ -63,7 +63,7 @@ public class Division {
         return stateId;
     }
 
-    public void setStateId(int primaryKey) {
-        this.stateId = primaryKey;
+    public void setStateId(int stateId) {
+        this.stateId = stateId;
     }
 }

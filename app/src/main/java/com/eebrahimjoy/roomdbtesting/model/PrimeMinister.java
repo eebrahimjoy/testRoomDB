@@ -5,13 +5,7 @@ import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "primeMinister", indices = {@Index(value = {"state_id"}, unique = true)})
-
 public class PrimeMinister {
-
-    @PrimaryKey
-    @ColumnInfo(name = "state_id")
-    private long stateId;
 
     @ColumnInfo(name = "name")
     private String name;
@@ -31,22 +25,14 @@ public class PrimeMinister {
     @ColumnInfo(name = "address")
     private String address;
 
-    public PrimeMinister(long stateId, String name, int age, String gender, String religion, boolean isPoliticalFamilyBackground, String address) {
-        this.stateId = stateId;
+    public PrimeMinister(String name, int age, String gender, String religion, boolean isPoliticalFamilyBackground, String address) {
+
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.religion = religion;
         this.isPoliticalFamilyBackground = isPoliticalFamilyBackground;
         this.address = address;
-    }
-
-    public long getStateId() {
-        return stateId;
-    }
-
-    public void setStateId(long stateId) {
-        this.stateId = stateId;
     }
 
     public String getName() {

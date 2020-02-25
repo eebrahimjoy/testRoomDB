@@ -11,7 +11,7 @@ import com.eebrahimjoy.roomdbtesting.model.Division;
 import com.eebrahimjoy.roomdbtesting.model.PrimeMinister;
 import com.eebrahimjoy.roomdbtesting.model.State;
 
-@Database(entities = {State.class, PrimeMinister.class, Division.class},
+@Database(entities = {State.class, Division.class},
         version = 1, exportSchema = true)
 
 public abstract class DatabaseHandler extends RoomDatabase {
