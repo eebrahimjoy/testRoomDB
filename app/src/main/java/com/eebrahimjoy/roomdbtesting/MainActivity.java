@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.eebrahimjoy.roomdbtesting.background.AppExecutors;
+import com.eebrahimjoy.roomdbtesting.dao.DivisionDao;
 import com.eebrahimjoy.roomdbtesting.dao.StateInfoDao;
 import com.eebrahimjoy.roomdbtesting.databaseHandler.DatabaseHandler;
+import com.eebrahimjoy.roomdbtesting.model.Division;
 import com.eebrahimjoy.roomdbtesting.model.PrimeMinister;
 import com.eebrahimjoy.roomdbtesting.model.State;
 import com.eebrahimjoy.roomdbtesting.viewmodel.StateViewModel;
@@ -21,14 +23,15 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private StateInfoDao stateInfoDao;
+    private DivisionDao divisionDao;
 
     private List<State> stateList = new ArrayList<>();
+    private List<Division> divisionList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         DatabaseHandler database = DatabaseHandler.getInstance(getApplicationContext().getApplicationContext());
 
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 , "islam", 147570, "asia", 16000000, 64
                 , new PrimeMinister(103, "Niton", 25, "male", "islam",
                 true, "mirpur, dhaka"));
-        final State state4 = new State(104, "Bangladesh", 500, "good", "bengali"
+        final State state4 = new State(104, "India", 500, "good", "bengali"
                 , "islam", 147570, "asia", 16000000, 64
                 , new PrimeMinister(104, "Ebrahim Joy", 25, "male", "islam",
                 true, "mirpur, dhaka"));
@@ -57,22 +60,41 @@ public class MainActivity extends AppCompatActivity {
         stateInfoDao = database.stateInfoDao();
 
 
+        final Division division = new Division("Dhaka", 500, 101);
+        final Division division2 = new Division("Khulna", 501, 101);
+        final Division division3 = new Division("Mymensingh", 502, 101);
+        final Division division4 = new Division("Chittagong", 503, 101);
+        final Division division5 = new Division("Polland", 504, 102);
+        final Division division6 = new Division("Uganda", 505, 102);
+
+        divisionList.add(division);
+        divisionList.add(division2);
+        divisionList.add(division3);
+        divisionList.add(division4);
+        divisionList.add(division5);
+        divisionList.add(division6);
+
+        divisionDao = database.divisionInfoDao();
+
+
         {
             new AppExecutors().diskIO().execute(new Runnable() {
                 @Override
                 public void run() {
 
                     stateInfoDao.bulkInsertOutbox(stateList);
+                    divisionDao.bulkInsertOutbox(divisionList);
 
                     List<State> states = stateInfoDao.getStateList("Bangladesh");
-                    Log.d("states", "onCreate: "+states);
+                    Log.d("states", "onCreate: " + states);
+
+
+                    List<Division> divisions = divisionDao.getStateWithDivision("Bangladesh");
+                    Log.d("states", "onCreate: " + divisions);
 
                 }
             });
         }
-
-
-
 
 
     }

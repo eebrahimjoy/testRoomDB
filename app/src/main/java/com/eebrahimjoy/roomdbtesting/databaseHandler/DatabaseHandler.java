@@ -5,11 +5,13 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.eebrahimjoy.roomdbtesting.dao.DivisionDao;
 import com.eebrahimjoy.roomdbtesting.dao.StateInfoDao;
+import com.eebrahimjoy.roomdbtesting.model.Division;
 import com.eebrahimjoy.roomdbtesting.model.PrimeMinister;
 import com.eebrahimjoy.roomdbtesting.model.State;
 
-@Database(entities = {State.class, PrimeMinister.class},
+@Database(entities = {State.class, PrimeMinister.class, Division.class},
         version = 1, exportSchema = true)
 
 public abstract class DatabaseHandler extends RoomDatabase {
@@ -34,6 +36,7 @@ public abstract class DatabaseHandler extends RoomDatabase {
     }
 
     public abstract StateInfoDao stateInfoDao();
+    public abstract DivisionDao divisionInfoDao();
 }
 
 
